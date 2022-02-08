@@ -29,8 +29,24 @@
     </div>
 </section>
 
-<section class="ftco-about img ftco-section ftco-no-pt ftco-no-pb" id="education-section">
+<section class="ftco-about ftco-section ftco-no-pt ftco-no-pb" id="education-section">
 <livewire:education >
+</section>
+
+<section class="ftco-about ftco-section ftco-no-pt ftco-no-pb" id="organization-section">
+<livewire:organization >
+</section>
+
+<section class="ftco-about ftco-section ftco-no-pt ftco-no-pb" id="work-section">
+<livewire:work >
+</section>
+
+<section class="ftco-about ftco-section ftco-no-pt ftco-no-pb" id="skill-section">
+<livewire:skill >
+</section>
+
+<section class="ftco-about ftco-section ftco-no-pt ftco-no-pb" id="project-section">
+<livewire:project >
 </section>
 @endsection
 

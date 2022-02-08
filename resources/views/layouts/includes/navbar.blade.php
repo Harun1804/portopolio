@@ -20,6 +20,10 @@
                 @auth
                     <li class="nav-item"><a href="#dashboard-section" class="nav-link"><span>Dashboard</span></a></li>
                     <li class="nav-item"><a href="#education-section" class="nav-link"><span>Education</span></a></li>
+                    <li class="nav-item"><a href="#organization-section" class="nav-link"><span>Organization</span></a></li>
+                    <li class="nav-item"><a href="#work-section" class="nav-link"><span>Work</span></a></li>
+                    <li class="nav-item"><a href="#skill-section" class="nav-link"><span>Skill</span></a></li>
+                    <li class="nav-item"><a href="#project-section" class="nav-link"><span>Project</span></a></li>
                     <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link"><span>Logout</span></a></li>
                 @endauth
             </ul>

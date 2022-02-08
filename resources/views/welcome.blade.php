@@ -35,7 +35,7 @@
                 <div class="img-about img d-flex align-items-stretch">
                     <div class="overlay"></div>
                     <div class="img d-flex align-self-stretch align-items-center"
-                        style="background-image:url(images/about.jpg);">
+                        style="background-image:url({{ asset('assets/images/about.jpg') }});">
                     </div>
                 </div>
             </div>
@@ -47,10 +47,6 @@
                         <p>“It’s Not Easy to Give Up” is the right sentence to describe myself and “Hard Worker” has become part of me</p>
                         <ul class="about-info mt-4 px-md-0 px-2">
                             <li class="d-flex"><span>Name :</span> <span>Harun Ar - Rasyid</span></li>
-                            <li class="d-flex"><span>Birth Date :</span> <span>April 18, 1999</span></li>
-                            <li class="d-flex"><span>Address :</span> <span>Jl. Cirangkong Kp.Sukamanah RT 012 RW 004 Desa Cijambe,
-                                    Kecamatan Cijambe, Kabupaten Subang</span></li>
-                            <li class="d-flex"><span>Zip Code :</span> <span>41286</span></li>
                             <li class="d-flex"><span>Email :</span> <span>Harun.arrasyid1804@gmail.com</span></li>
                             <li class="d-flex"><span>Phone Number: </span> <span>+62-851-5632-0812</span></li>
                         </ul>
@@ -62,7 +58,6 @@
                             <span class="number" data-number="17">0</span>
                             <span>Project complete</span>
                         </p>
-                        <!-- <p><a href="#" class="btn btn-primary py-3 px-3">Download CV</a></p> -->
                     </div>
                 </div>
             </div>
@@ -108,207 +103,95 @@
                 </div>
                 <div id="page-2" class="page two">
                     <h2 class="heading">Organization Experience</h2>
+                    @forelse ($organizations as $organization)
                     <div class="resume-wrap d-flex ftco-animate">
                         <div class="icon d-flex align-items-center justify-content-center">
                             <span class="flaticon-ideas"></span>
                         </div>
                         <div class="text pl-3">
-                            <span class="date">2017 - 2019</span>
-                            <h2>Himpunan Mahasiswa Teknik Informatika</h2>
-                            <span class="position">Development Team Member</span>
-                            <p>Become a Development Team Member for 2 Years</p>
+                            <span class="date">{{ \Carbon\Carbon::parse($organization->in)->year }} - {{ ($organization->out == null) ? 'NOW' : \Carbon\Carbon::parse($organization->out)->year }}</span>
+                            <h2>{{ $organization->position }}</h2>
+                            <span class="position">{{ $organization->subposition }}</span>
+                            <p>{{ $organization->desc }}</p>
                         </div>
                     </div>
+                    @empty
                     <div class="resume-wrap d-flex ftco-animate">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="flaticon-ideas"></span>
-                        </div>
                         <div class="text pl-3">
-                            <span class="date">2014-2015</span>
-                            <h2>Computer Club</h2>
-                            <span class="position">Leader</span>
-                            <p>Become Leader of Computer Club in Senior High School 3 Subang</p>
+                            <h2 style="text-align: center">No Data Found</h2>
                         </div>
                     </div>
-                    <div class="resume-wrap d-flex ftco-animate">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="flaticon-ideas"></span>
-                        </div>
-                        <div class="text pl-3">
-                            <span class="date">2014-2015</span>
-                            <h2>Students' Council</h2>
-                            <span class="position">Division Leader</span>
-                            <p>Become Division Leader Of Information and Communication Technology</p>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
                 <div id="page-3" class="page three">
                     <h2 class="heading">Work Experience</h2>
+                    @forelse ($works as $work)
                     <div class="resume-wrap d-flex ftco-animate">
                         <div class="icon d-flex align-items-center justify-content-center">
                             <span class="flaticon-ideas"></span>
                         </div>
                         <div class="text pl-3">
-                            <span class="date">October 2020 - December 2020</span>
-                            <h2>Kampung Course Indonesia</h2>
-                            <span class="position">Fullstack Backend Developer</span>
-                            <p>Become an intern student for 3 months</p>
+                            <span class="date">{{ \Carbon\Carbon::parse($work->in)->format('F Y') }} - {{ ($work->out == null) ? 'NOW' : \Carbon\Carbon::parse($work->out)->format('F Y') }}</span>
+                            <h2>{{ $work->position }}</h2>
+                            <span class="position">{{ $work->subposition }}</span>
+                            <p>{{ $work->desc }}</p>
                         </div>
                     </div>
+                    @empty
+                    <div class="resume-wrap d-flex ftco-animate">
+                        <div class="text pl-3">
+                            <h2 style="text-align: center">No Data Found</h2>
+                        </div>
+                    </div>
+                    @endforelse
                 </div>
                 <div id="page-4" class="page four">
                     <h2 class="heading">Skills</h2>
                     <div class="row">
-                        <div class="row progress-circle mb-5">
-                            <div class="col-lg-4 mb-4">
-                                <div class="bg-white rounded-lg shadow p-4">
-                                    <h2 class="h5 font-weight-bold text-center mb-4"></h2>
-                                    <!-- Progress bar 1 -->
-                                    <div class="progress mx-auto" data-value='100'>
-                                        <span class="progress-left">
-                                            <span class="progress-bar border-primary"></span>
-                                        </span>
-                                        <span class="progress-right">
-                                            <span class="progress-bar border-primary"></span>
-                                        </span>
-                                        <div
-                                            class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                            <div class="h2 font-weight-bold">Laravel<sup class="small"></sup></div>
+                        @forelse ($mainSkills as $skill)
+                            <div class="row progress-circle mb-5">
+                                <div class="col-lg-12 mb-4 mr-3">
+                                    <div class="bg-white rounded-lg p-4">
+                                        <!-- Progress bar 1 -->
+                                        <div class="progress mx-auto" data-value={{ $skill->value }}>
+                                            <span class="progress-left">
+                                                <span class="progress-bar border-primary"></span>
+                                            </span>
+                                            <span class="progress-right">
+                                                <span class="progress-bar border-primary"></span>
+                                            </span>
+                                            <div
+                                                class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                                                <div class="h2 font-weight-bold">{{ $skill->name }}</div>
+                                            </div>
                                         </div>
+                                        <!-- END -->
                                     </div>
-                                    <!-- END -->
                                 </div>
                             </div>
+                        @empty
+                        <div class="col-md-12" style="text-align: center">
+                            No Data Found
+                        </div>
+                        @endforelse
 
-                            <div class="col-lg-4 mb-4">
-                                <div class="bg-white rounded-lg shadow p-4">
-                                    <h2 class="h5 font-weight-bold text-center mb-4"></h2>
-                                    <!-- Progress bar 1 -->
-                                    <div class="progress mx-auto" data-value='100'>
-                                        <span class="progress-left">
-                                            <span class="progress-bar border-primary"></span>
-                                        </span>
-                                        <span class="progress-right">
-                                            <span class="progress-bar border-primary"></span>
-                                        </span>
-                                        <div
-                                            class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                            <div class="h2 font-weight-bold">SQL<sup class="small"></sup></div>
-                                        </div>
-                                    </div>
-                                    <!-- END -->
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 mb-4">
-                                <div class="bg-white rounded-lg shadow p-4">
-                                    <h2 class="h5 font-weight-bold text-center mb-4"></h2>
-
-                                    <!-- Progress bar 1 -->
-                                    <div class="progress mx-auto" data-value='100'>
-                                        <span class="progress-left">
-                                            <span class="progress-bar border-primary"></span>
-                                        </span>
-                                        <span class="progress-right">
-                                            <span class="progress-bar border-primary"></span>
-                                        </span>
-                                        <div
-                                            class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                            <div class="h2 font-weight-bold">PHP<sup class="small"></sup></div>
-                                        </div>
-                                    </div>
-                                    <!-- END -->
-                                </div>
-                            </div>
-                        </div>
+                        @forelse ($skills as $skill)
                         <div class="col-md-6 animate-box">
                             <div class="progress-wrap ftco-animate">
-                                <h3>Git</h3>
-                                <!-- <div class="progress">
-                                    <div class="progress-bar color-2" role="progressbar" aria-valuenow="95"
-                                        aria-valuemin="0" aria-valuemax="100" style="width:95%">
+                                <h3>{{ $skill->name }}</h3>
+                                {{-- <div class="progress">
+                                    <div class="progress-bar color-2" role="progressbar" aria-valuenow="{{ $skill->value }}"
+                                        aria-valuemin="0" aria-valuemax="100" style="width:{{ $skill->value }}%">
                                         <span></span>
                                     </div>
-                                </div> -->
+                                </div> --}}
                             </div>
                         </div>
-                        <div class="col-md-6 animate-box">
-                            <div class="progress-wrap ftco-animate">
-                                <h3>Github</h3>
-                                <!-- <div class="progress">
-                                    <div class="progress-bar color-2" role="progressbar" aria-valuenow="95"
-                                        aria-valuemin="0" aria-valuemax="100" style="width:95%">
-                                        <span></span>
-                                    </div>
-                                </div> -->
-                            </div>
+                        @empty
+                        <div class="col-md-12" style="text-align: center">
+                            No Data Found
                         </div>
-                        <div class="col-md-6 animate-box">
-                            <div class="progress-wrap ftco-animate">
-                                <h3>JavaScript</h3>
-                                <!-- <div class="progress">
-                                    <div class="progress-bar color-2" role="progressbar" aria-valuenow="85"
-                                        aria-valuemin="0" aria-valuemax="100" style="width:75%">
-                                        <span></span>
-                                    </div>
-                                </div> -->
-                            </div>
-                        </div>
-                        <div class="col-md-6 animate-box">
-                            <div class="progress-wrap ftco-animate">
-                                <h3>CodeIgniter</h3>
-                                <!-- <div class="progress">
-                                    <div class="progress-bar color-3" role="progressbar" aria-valuenow="95"
-                                        aria-valuemin="0" aria-valuemax="100" style="width:89%">
-                                        <span></span>
-                                    </div>
-                                </div> -->
-                            </div>
-                        </div>
-                        <div class="col-md-6 animate-box">
-                            <div class="progress-wrap ftco-animate">
-                                <h3>HTML</h3>
-                                <!-- <div class="progress">
-                                    <div class="progress-bar color-2" role="progressbar" aria-valuenow="85"
-                                        aria-valuemin="0" aria-valuemax="100" style="width:75%">
-                                        <span></span>
-                                    </div>
-                                </div> -->
-                            </div>
-                        </div>
-                        <div class="col-md-6 animate-box">
-                            <div class="progress-wrap ftco-animate">
-                                <h3>bootstrap</h3>
-                                <!-- <div class="progress">
-                                    <div class="progress-bar color-3" role="progressbar" aria-valuenow="95"
-                                        aria-valuemin="0" aria-valuemax="100" style="width:89%">
-                                        <span></span>
-                                    </div>
-                                </div> -->
-                            </div>
-                        </div>
-                        <div class="col-md-6 animate-box">
-                            <div class="progress-wrap ftco-animate">
-                                <h3>Microsoft Office Word</h3>
-                                <!-- <div class="progress">
-                                    <div class="progress-bar color-4" role="progressbar" aria-valuenow="90"
-                                        aria-valuemin="0" aria-valuemax="100" style="width:78%">
-                                        <span></span>
-                                    </div>
-                                </div> -->
-                            </div>
-                        </div>
-                        <div class="col-md-6 animate-box">
-                            <div class="progress-wrap ftco-animate">
-                                <h3>Microsoft Office Excell</h3>
-                                <!-- <div class="progress">
-                                    <div class="progress-bar color-4" role="progressbar" aria-valuenow="90"
-                                        aria-valuemin="0" aria-valuemax="100" style="width:78%">
-                                        <span></span>
-                                    </div>
-                                </div> -->
-                            </div>
-                        </div>
+                        @endforelse
                     </div>
                 </div>
             </div>
@@ -385,182 +268,22 @@
             </div>
         </div>
         <div class="row no-gutters">
-
+            @forelse ($projects as $project)
             <div class="col-md-4">
                 <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image: url(images/projects/work-16.png);">
+                    style="background-image: url({{ url($project->thumbnail) }});">
                     <div class="overlay"></div>
                     <div class="text text-center p-4">
-                        <h3><a href="#">Student Interest Prediction System and Supervisor Recommendation</a></h3>
-                        <span>Laravel</span>
+                        <h3><a href="#">{{ $project->name }}</a></h3>
+                        <span>{{ $project->tech }}</span>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image: url(images/projects/work-15.png);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">Intelligo.id</a></h3>
-                        <span>Laravel</span>
-                    </div>
-                </div>
+            @empty
+            <div class="col-md-12" style="text-align: center">
+                No Data Found
             </div>
-
-            <div class="col-md-4">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image: url(images/projects/work-14.png);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">Reservation For Barbershop and Salon</a></h3>
-                        <span>Laravel</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image: url(images/projects/work-11.png);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">E-Marketplace Course With Application of Collaborative Filtering Method</a></h3>
-                        <span>Laravel</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image: url(images/projects/work-12.png);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">E-Marketplace Information System Course</a></h3>
-                        <span>Laravel</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image: url(images/projects/work-13.png);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">Queue App</a></h3>
-                        <span>Laravel</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image: url(images/projects/work-10.png);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">Laundry App</a></h3>
-                        <span>Laravel</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image: url(images/projects/work-9.png);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">Student Executive Board Information System</a></h3>
-                        <span>Laravel</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image: url(images/projects/work-8.jpg);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">Goods Grant Monitoring</a></h3>
-                        <span>Laravel</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image: url(images/projects/work-7.jpg);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">Training Registration Application</a></h3>
-                        <span>Laravel</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image: url(images/projects/work-6.jpg);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">Inventory application</a></h3>
-                        <span>Laravel</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image: url(images/projects/work-5.jpg);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">Vehicle Selection Information System On Car Rents Using Forward Chaining Method</a></h3>
-                        <span>Laravel</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image: url(images/projects/work-4.jpg);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">Arrow Club Management Application</a></h3>
-                        <span>Laravel</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image: url(images/projects/work-3.jpg);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">In Transit Merge Warehouse Management Application</a></h3>
-                        <span>CodeIgniter3</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image: url(images/projects/work-2.png);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">Ordering goods</a></h3>
-                        <span>CodeIgniter3</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image: url(images/projects/work-1.png);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">Management Cafe App</a></h3>
-                        <span>CodeIgniter3</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image: url(images/projects/work-0.png);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">Alumni Management System</a></h3>
-                        <span>CodeIgniter3</span>
-                    </div>
-                </div>
-            </div>
+            @endforelse
         </div>
     </div>
 </section>

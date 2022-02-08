@@ -17,6 +17,7 @@ class CreateSkillsTable extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('main')->default(false);
+            $table->integer('value');
             $table->timestamps();
         });
     }
