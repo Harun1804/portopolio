@@ -52,7 +52,7 @@
                             <td>{{ $project->tech }}</td>
                             <td>{{ $project->desc }}</td>
                             <td>
-                                <img src="{{ asset($project->thumbnail) }}" width="50px" alt="img" class="img img-fluid">
+                                <img src="{{ url($project->thumbnail) }}" width="50px" alt="img" class="img img-fluid">
                             </td>
                         </tr>
                     @empty
