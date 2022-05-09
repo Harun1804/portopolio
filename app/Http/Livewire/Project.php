@@ -30,7 +30,8 @@ class Project extends Component
 
     public function store()
     {
-        Storage::disk('google')->put($this->newImage->getClientOriginalName(),file_get_contents($this->newImage->getRealPath()));
+        $latestProject = $this->getLatestProject();
+        Storage::disk('google')->put($latestProject.".png",file_get_contents($this->newImage->getRealPath()));
 
         ModelsProject::create([
             'name'      => $this->name,
@@ -59,8 +60,9 @@ class Project extends Component
     {
         $project = ModelsProject::findOrFail($this->selectedID);
         if ($this->newImage) {
-            Storage::disk('google')->put($this->newImage->getClientOriginalName(),file_get_contents($this->newImage->getRealPath()));
-
+            $latestProject = $this->getLatestProject();
+            Storage::disk('google')->put($latestProject.".png",file_get_contents($this->newImage->getRealPath()));
+            
             $project->update([
                 'name'      => $this->name,
                 'slug'      => Str::slug($this->name),
@@ -92,5 +94,16 @@ class Project extends Component
         $firstFileName = $files[0];
         $firstFileUrl = Storage::disk('google')->url($firstFileName);
         return $firstFileUrl;
+    }
+
+    public function getLatestProject()
+    {
+        $projects = ModelsProject::latest()->get()->count();
+
+        if($projects == 0){
+            return 1;
+        }else{
+            return $projects + 1;
+        }
     }
 }
