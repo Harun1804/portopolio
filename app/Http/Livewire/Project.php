@@ -31,7 +31,7 @@ class Project extends Component
     public function store()
     {
         $latestProject = $this->getLatestProject();
-        Storage::disk('google')->put($latestProject.".png",file_get_contents($this->newImage->getRealPath()));
+        Storage::disk('google')->put($latestProject.".png",file_get_contents($latestProject.".png"));
 
         ModelsProject::create([
             'name'      => $this->name,
@@ -61,8 +61,8 @@ class Project extends Component
         $project = ModelsProject::findOrFail($this->selectedID);
         if ($this->newImage) {
             $latestProject = $this->getLatestProject();
-            Storage::disk('google')->put($latestProject.".png",file_get_contents($this->newImage->getRealPath()));
-            
+            Storage::disk('google')->put($latestProject.".png",file_get_contents($latestProject."));
+
             $project->update([
                 'name'      => $this->name,
                 'slug'      => Str::slug($this->name),
