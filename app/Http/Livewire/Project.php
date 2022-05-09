@@ -61,7 +61,7 @@ class Project extends Component
         $project = ModelsProject::findOrFail($this->selectedID);
         if ($this->newImage) {
             $latestProject = $this->getLatestProject();
-            Storage::disk('google')->put($latestProject.".png",file_get_contents($latestProject."));
+            Storage::disk('google')->put($latestProject.".png",file_get_contents($latestProject.".png"));
 
             $project->update([
                 'name'      => $this->name,
