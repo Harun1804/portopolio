@@ -16,9 +16,4 @@ class Project extends Model
         'thumbnail',
         'desc'
     ];
-
-    public function getThumbnailAttribute($value)
-    {
-        return asset('storage/' . $value);
-    }
 }

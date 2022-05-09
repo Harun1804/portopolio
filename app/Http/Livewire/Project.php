@@ -4,8 +4,9 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Str;
-use App\Models\Project as ModelsProject;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Project as ModelsProject;
 
 class Project extends Component
 {
@@ -29,14 +30,14 @@ class Project extends Component
 
     public function store()
     {
-        $imageFile = $this->newImage->store('img/projects','public');
+        Storage::disk('google')->put($this->newImage->getClientOriginalName(),file_get_contents($this->newImage->getRealPath()));
 
         ModelsProject::create([
             'name'      => $this->name,
             'slug'      => Str::slug($this->name),
             'tech'      => $this->tech,
             'desc'      => $this->desc,
-            'thumbnail' => $imageFile
+            'thumbnail' => $this->getImage()
         ]);
 
         $this->resetInput();
@@ -58,14 +59,14 @@ class Project extends Component
     {
         $project = ModelsProject::findOrFail($this->selectedID);
         if ($this->newImage) {
-            $imageFile = $this->newImage->store('img/projects','public');
+            Storage::disk('google')->put($this->newImage->getClientOriginalName(),file_get_contents($this->newImage->getRealPath()));
 
             $project->update([
                 'name'      => $this->name,
                 'slug'      => Str::slug($this->name),
                 'tech'      => $this->tech,
                 'desc'      => $this->desc,
-                'thumbnail' => $imageFile
+                'thumbnail' => $this->getImage()
             ]);
         }
 
@@ -83,5 +84,13 @@ class Project extends Component
     public function destroy($id)
     {
         ModelsProject::destroy($id);
+    }
+
+    public function getImage()
+    {
+        $files = Storage::disk('google')->allFiles();
+        $firstFileName = $files[0];
+        $firstFileUrl = Storage::disk('google')->url($firstFileName);
+        return $firstFileUrl;
     }
 }
