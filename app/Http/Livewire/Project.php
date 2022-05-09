@@ -25,11 +25,11 @@ class Project extends Component
         $this->name     = null;
         $this->tech     = null;
         $this->desc     = null;
-        $this->newImage = null;
     }
 
     public function store()
     {
+        dd($this->newImage);
         Storage::disk('google')->put($this->newImage->getClientOriginalName(),file_get_contents($this->newImage->getRealPath()));
 
         ModelsProject::create([

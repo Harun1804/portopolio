@@ -11,7 +11,7 @@
                                 <li class="d-flex"><span>Name</span> <span><input type="text" name="name" placeholder="Name" class="form-control" wire:model="name" value="{{ old('name',$name) }}"></span></li>
                                 <li class="d-flex"><span>Tech</span> <span><input type="text" name="tech" placeholder="Tech" class="form-control" wire:model="tech" value="{{ old('tech',$tech) }}"></span></li>
                                 <li class="d-flex"><span>Desc</span> <span><input type="text" name="desc" placeholder="desc" class="form-control" wire:model="desc" value="{{ old('desc',$desc) }}"></span></li>
-                                <li class="d-flex"><span>Thumbnail</span> <span><input type="file" placeholder="newImage" class="form-control" wire:model="newImage" value="{{ old('newImage',$newImage) }}"></span></li>
+                                <li class="d-flex"><span>Thumbnail</span> <span><input type="file" placeholder="newImage" class="form-control" wire:model="newImage" value="{{ old('newImage') }}"></span></li>
                                 <li class="d-flex"><span><button type="submit" class="btn btn-primary">Change</button></span></li>
                             </form>
                         @else

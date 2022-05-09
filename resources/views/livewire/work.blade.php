@@ -8,7 +8,7 @@
                         @if ($editMode)
                             <form wire:submit.prevent="update" method="POST">
                                 @csrf
-                                <li class="d-flex"><span>Position</span> <span><input type="text" name="position" placeholder="Position" class="form-control" wire:model="position" value="{{ old('position',$position) }}"></span></li>
+                                <li class="d-flex"><span>Company</span> <span><input type="text" name="company" placeholder="Company" class="form-control" wire:model="position" value="{{ old('position',$position) }}"></span></li>
                                 <li class="d-flex"><span>Date In</span> <span><input type="date" name="in" placeholder="Date In" class="form-control" wire:model="dateIn" value="{{ old('dateIn',$dateIn) }}"></span></li>
                                 <li class="d-flex"><span>Date Out</span> <span><input type="date" name="out" placeholder="Date out" class="form-control" wire:model="dateOut" value="{{ old('dateOut',$dateOut) }}"></span></li>
                                 <li class="d-flex"><span>Subposition</span> <span><input type="text" name="subposition" placeholder="subposition" class="form-control" wire:model="subposition" value="{{ old('subposition',$subposition) }}"></span></li>
@@ -18,7 +18,7 @@
                         @else
                             <form wire:submit.prevent="store" method="POST">
                                 @csrf
-                                <li class="d-flex"><span>Position</span> <span><input type="text" name="position" placeholder="Position" class="form-control" wire:model="position" value="{{ old('position',$position) }}"></span></li>
+                                <li class="d-flex"><span>Company</span> <span><input type="text" name="company" placeholder="Company" class="form-control" wire:model="position" value="{{ old('position',$position) }}"></span></li>
                                 <li class="d-flex"><span>Date In</span> <span><input type="date" name="in" placeholder="Date In" class="form-control" wire:model="dateIn" value="{{ old('dateIn',$dateIn) }}"></span></li>
                                 <li class="d-flex"><span>Date Out</span> <span><input type="date" name="out" placeholder="Date out" class="form-control" wire:model="dateOut" value="{{ old('dateOut',$dateOut) }}"></span></li>
                                 <li class="d-flex"><span>Subposition</span> <span><input type="text" name="subposition" placeholder="subposition" class="form-control" wire:model="subposition" value="{{ old('subposition',$subposition) }}"></span></li>
