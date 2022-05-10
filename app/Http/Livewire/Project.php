@@ -29,8 +29,7 @@ class Project extends Component
 
     public function store()
     {
-        dd($this->newImage);
-        Storage::disk('google')->put($this->newImage->getClientOriginalName(),file_get_contents($this->newImage->getRealPath()));
+        $this->newImage->store('/','google');
 
         ModelsProject::create([
             'name'      => $this->name,
@@ -59,7 +58,7 @@ class Project extends Component
     {
         $project = ModelsProject::findOrFail($this->selectedID);
         if ($this->newImage) {
-            Storage::disk('google')->put($this->newImage->getClientOriginalName(),file_get_contents($this->newImage->getRealPath()));
+            $this->newImage->store('/','google');
 
             $project->update([
                 'name'      => $this->name,
