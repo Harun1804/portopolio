@@ -18,14 +18,14 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
-        $request->file('thumbnail')->store('/','google');
+        $image = $request->file('thumbnail')->store('/','google');
 
         $project = Project::create([
             'name'      => $request->name,
             'slug'      => Str::slug($request->name),
             'tech'      => $request->tech,
             'desc'      => $request->desc,
-            'thumbnail' => $this->getImage()
+            'thumbnail' => Storage::disk('google')->url($image)
         ]);
 
         return $this->resStatus(null,200,"Berhasil Menambahkan Data Project",$project);
