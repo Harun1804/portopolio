@@ -34,7 +34,7 @@ class ProjectController extends Controller
     private function getImage()
     {
         $files = Storage::disk('google')->allFiles();
-        $firstFileName = $files[0];
+        $firstFileName = end($files);
         $firstFileUrl = Storage::disk('google')->url($firstFileName);
         return $firstFileUrl;
     }
