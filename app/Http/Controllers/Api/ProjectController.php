@@ -31,14 +31,6 @@ class ProjectController extends Controller
         return $this->resStatus(null,200,"Berhasil Menambahkan Data Project",$project);
     }
 
-    private function getImage()
-    {
-        $files = Storage::disk('google')->allFiles();
-        $firstFileName = end($files);
-        $firstFileUrl = Storage::disk('google')->url($firstFileName);
-        return $firstFileUrl;
-    }
-
     private function resStatus($param = null, $status = null, $message = null, $result = null)
     {
         $response['response'] = [
