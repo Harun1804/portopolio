@@ -39,11 +39,11 @@
 					<div class="ftco-footer-widget mb-4 ml-md-4">
 						<h2 class="ftco-heading-2">Links</h2>
 						<ul class="list-unstyled">
-							<li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
-							<li><a href="#"><span class="icon-long-arrow-right mr-2"></span>About</a></li>
-							<li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Services</a></li>
-							<li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Projects</a></li>
-							<li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
+							<li><a href="#home-section"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
+							<li><a href="#about-section"><span class="icon-long-arrow-right mr-2"></span>About</a></li>
+							<li><a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>Services</a></li>
+							<li><a href="#projects-section"><span class="icon-long-arrow-right mr-2"></span>Projects</a></li>
+							<li><a href="#contact-section"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
 						</ul>
 					</div>
 				</div>
@@ -66,11 +66,9 @@
 						<h2 class="ftco-heading-2">Have a Questions?</h2>
 						<div class="block-23 mb-3">
 							<ul>
-								<li><span class="icon icon-map-marker"></span><span class="text">Jl. Cirangkong Kp.Sukamanah RT 012 RW 004 Desa Cijambe,
-									Kecamatan Cijambe, Kabupaten Subang</span></li>
-								<li><a href="#"><span class="icon icon-phone"></span><span
-											class="text">+62-8231-9331-212</span></a></li>
-								<li><a href="#"><span class="icon icon-envelope"></span><span
+								<li><a href="https://wa.me/085156320812?text=Hello,%20I%20Need%20your%20service%20for%20making%20a%20website"><span class="icon icon-phone"></span><span
+											class="text">+62-8515-6320-812</span></a></li>
+								<li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=harun.arrasyid1804@gmail.com"><span class="icon icon-envelope"></span><span
 											class="text">harun.arrasyid1804@gmail.com</span></a></li>
 							</ul>
 						</div>
