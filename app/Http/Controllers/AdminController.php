@@ -17,7 +17,7 @@ class AdminController extends Controller
         $works          = Experience::whereCategory('work')->latest()->get();
         $mainSkills     = Skill::whereMain(1)->latest()->limit(3)->get();
         $skills         = Skill::whereMain(0)->latest()->get();
-        $projects       = Project::latest()->get();
+        $projects       = Project::latest()->take(10)->get();
         return view('welcome',compact(['educations','organizations','works','mainSkills','skills','projects']));
     }
 
