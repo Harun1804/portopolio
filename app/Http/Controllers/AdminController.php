@@ -18,7 +18,8 @@ class AdminController extends Controller
         $mainSkills     = Skill::whereMain(1)->latest()->limit(3)->get();
         $skills         = Skill::whereMain(0)->latest()->get();
         $projects       = Project::latest()->take(10)->get();
-        return view('welcome',compact(['educations','organizations','works','mainSkills','skills','projects']));
+        $projectsCount  = Project::count();
+        return view('welcome',compact(['educations','organizations','works','mainSkills','skills','projects','projectsCount']));
     }
 
     public function dashboard()

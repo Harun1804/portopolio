@@ -55,7 +55,7 @@
                 <div class="counter-wrap ftco-animate d-flex mt-md-3">
                     <div class="text">
                         <p class="mb-4">
-                            <span class="number" data-number="{{ $projects->count() }}">0</span>
+                            <span class="number" data-number="{{ $projectsCount }}">0</span>
                             <span>Project complete</span>
                         </p>
                     </div>
